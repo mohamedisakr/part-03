@@ -18,6 +18,15 @@ Content-Type: {{contentType}}
     "number": "739-12-987432"
 }
 
+### persons item post (test for name uniqueness)
+POST  {{baseURL}}/api/persons/
+Content-Type: {{contentType}}
+
+{        
+    "name": "Dan Abramov", 
+    "number": "12-43-234345" 
+}
+
 ### persons item delete
 DELETE  {{baseURL}}/api/persons/10
 
