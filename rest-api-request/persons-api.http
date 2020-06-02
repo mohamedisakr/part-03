@@ -4,13 +4,13 @@
 
 ### notes
 
-GET {{baseURL}}/api/notes/
+GET {{baseURL}}/api/persons/
 
 ### notes item get 
-GET {{baseURL}}/api/notes/1
+GET {{baseURL}}/api/persons/1
 
 ### notes item post 
-POST  {{baseURL}}/api/notes/
+POST  {{baseURL}}/api/persons/
 Content-Type: {{contentType}}
 
 {        

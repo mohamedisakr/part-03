@@ -3,25 +3,11 @@ const app = express();
 
 app.use(express.json());
 
-let notes = [
-  {
-    id: 1,
-    content: "HTML is easy",
-    date: "2019-05-30T17:30:31.098Z",
-    important: true,
-  },
-  {
-    id: 2,
-    content: "Browser can execute only Javascript",
-    date: "2019-05-30T18:39:34.091Z",
-    important: false,
-  },
-  {
-    id: 3,
-    content: "GET and POST are the most important methods of HTTP protocol",
-    date: "2019-05-30T19:20:14.298Z",
-    important: true,
-  },
+let persons = [
+  { id: 1, name: "Arto Hellas", number: "040-123456" },
+  { id: 2, name: "Ada Lovelace", number: "39-44-5323523" },
+  { id: 3, name: "Dan Abramov", number: "12-43-234345" },
+  { id: 4, name: "Mary Poppendieck", number: "39-23-6423122" },
 ];
 
 app.get("/", (req, res) =>
@@ -30,19 +16,19 @@ app.get("/", (req, res) =>
   )
 );
 
-app.get("/api/notes", (req, res) => res.json(notes));
+app.get("/api/persons", (req, res) => res.json(persons));
 
-app.get("/api/notes/:id", (req, res) => {
+app.get("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
-  const note = notes.find((note) => Number(note.id) === id);
-  if (note) {
-    res.json(note);
+  const person = persons.find((person) => Number(person.id) === id);
+  if (person) {
+    res.json(person);
   } else {
-    res.status(404).send(`Note with id ${id} does not exist`);
+    res.status(404).send(`Person with id ${id} does not exist`);
   }
 });
 
-app.post("/api/notes", (req, res) => {
+app.post("/api/persons", (req, res) => {
   const body = req.body;
   const maxId = generateId();
   if (!body.content) {
@@ -55,14 +41,14 @@ app.post("/api/notes", (req, res) => {
     important: body.important || false,
   };
 
-  notes = notes.concat(newNote);
+  persons = persons.concat(newNote);
   console.log(newNote);
   res.json(newNote);
 });
 
-app.delete("/api/notes/:id", (req, res) => {
+app.delete("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
-  notes = notes.filter((note) => note.id !== id);
+  persons = persons.filter((note) => note.id !== id);
   res.status(204).end();
 });
 
@@ -72,6 +58,6 @@ app.listen(port, () => {
 });
 
 const generateId = () => {
-  const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
+  const maxId = persons.length > 0 ? Math.max(...persons.map((n) => n.id)) : 0;
   return maxId + 1;
 };

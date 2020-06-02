@@ -5,19 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev":"nodemon index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mohamedisakr/part-03-training.git"
+    "url": "git+https://https://github.com/mohamedisakr/part-03.git"
   },
   "author": "Mohamed Sakr",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mohamedisakr/part-03-training/issues"
+    "url": "https://https://github.com/mohamedisakr/part-03/issues"
   },
-  "homepage": "https://github.com/mohamedisakr/part-03-training#readme",
+  "homepage": "https://https://github.com/mohamedisakr/part-03#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
