@@ -42,6 +42,7 @@ app.get("/api/persons/:id", (req, res) => {
   }
 });
 
+// new phonebook entry
 app.post("/api/persons", (req, res) => {
   const body = req.body;
   const maxId = generateId();
