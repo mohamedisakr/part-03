@@ -1,0 +1,21 @@
+### global variables
+@baseURL = http://localhost:3001
+@contentType = application/json
+
+### notes
+
+GET {{baseURL}}/api/notes/
+
+### notes item get 
+GET {{baseURL}}/api/notes/1
+
+### notes item post 
+POST  {{baseURL}}/api/notes/
+Content-Type: {{contentType}}
+
+{        
+    "content": "VS Code REST client is pretty awosome",
+    "important": true
+}
+
+
