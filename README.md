@@ -1,5 +1,7 @@
 ## Requirements
 
+1. Exercise 3.2 Phonebook backend step 2 not finished
+
 ## Introduction
 
 Studying Deep Dive Into Modern Web Development (Full stack open 2020) @ https://fullstackopen.com/en/

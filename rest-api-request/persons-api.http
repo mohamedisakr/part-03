@@ -14,8 +14,11 @@ POST  {{baseURL}}/api/persons/
 Content-Type: {{contentType}}
 
 {        
-    "content": "VS Code REST client is pretty awosome",
-    "important": true
+    "name": "John Doe", 
+    "number": "739-12-987432"
 }
+
+### info 
+GET {{baseURL}}/info
 
 

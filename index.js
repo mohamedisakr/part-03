@@ -18,6 +18,20 @@ app.get("/", (req, res) =>
 
 app.get("/api/persons", (req, res) => res.json(persons));
 
+app.get("/info", (req, res) => {
+  const currentDate = Date.now();
+  res.send(`<p>Phonebook has info for ${persons.length} people</p>`);
+  // res.send(`<p>${new Date().toLocaleDateString()}</p>`);
+
+  // res.send(currentDate);
+  // res.send(res.getHeaders());
+  // res.send(req.headers.date);
+
+  // res.send(`<div>${new Date()}</div>`);
+  // res.json(`<div>${new Date()}</div>`);
+  // res.send(Date.now());
+});
+
 app.get("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
   const person = persons.find((person) => Number(person.id) === id);
@@ -31,19 +45,24 @@ app.get("/api/persons/:id", (req, res) => {
 app.post("/api/persons", (req, res) => {
   const body = req.body;
   const maxId = generateId();
-  if (!body.content) {
-    return res.status(400).json({ error: "content missing" });
+
+  if (!body.name) {
+    return res.status(400).json({ error: "name missing" });
   }
-  const newNote = {
-    id: Number(maxId + 1),
-    content: body.content,
-    date: new Date().toDateString(),
-    important: body.important || false,
+
+  if (!body.number) {
+    return res.status(400).json({ error: "number missing" });
+  }
+
+  const newPerson = {
+    id: maxId,
+    name: body.name,
+    number: body.number,
   };
 
-  persons = persons.concat(newNote);
-  console.log(newNote);
-  res.json(newNote);
+  persons = persons.concat(newPerson);
+  console.log(newPerson);
+  res.json(newPerson);
 });
 
 app.delete("/api/persons/:id", (req, res) => {
