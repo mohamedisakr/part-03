@@ -33,4 +33,7 @@ DELETE  {{baseURL}}/api/persons/10
 ### info 
 GET {{baseURL}}/info
 
+### unknown endpoint
+GET {{baseURL}}/foo/bar
+
 

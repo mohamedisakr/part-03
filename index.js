@@ -1,7 +1,9 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
 app.use(express.json());
+app.use(morgan("tiny"));
 
 let persons = [
   { id: 1, name: "Arto Hellas", number: "040-123456" },
@@ -77,6 +79,13 @@ app.delete("/api/persons/:id", (req, res) => {
   persons = persons.filter((person) => person.id !== id);
   res.status(204).end();
 });
+
+// catch requests made to non-existent routes
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
+};
+
+app.use(unknownEndpoint);
 
 const port = 3001;
 app.listen(port, () => {
