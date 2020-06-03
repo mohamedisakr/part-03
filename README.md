@@ -1,6 +1,8 @@
 ## Requirements
 
 1. Exercise 3.2 Phonebook backend step 2 not finished
+2. Exercise 3.10 phonebook backend step 10 not implemented (Heroku)
+3. Exercise 3.11 phonebook full stack not implemented (Heroku)
 
 ## Introduction
 
