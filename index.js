@@ -1,8 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
+
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
+
 // app.use(morgan("tiny"));
 // app.use(
 //   morgan(function (tokens, req, res) {
@@ -39,6 +44,7 @@ let persons = [
   { id: 2, name: "Ada Lovelace", number: "39-44-5323523" },
   { id: 3, name: "Dan Abramov", number: "12-43-234345" },
   { id: 4, name: "Mary Poppendieck", number: "39-23-6423122" },
+  { id: 5, name: "John Doe", number: "40-12-5555122" },
 ];
 
 app.get("/", (req, res) =>
