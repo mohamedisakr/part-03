@@ -1,22 +1,3 @@
-const mongoose = require("mongoose");
-
-const connectionString = "mongodb://localhost:27017/contact-app";
-
-mongoose.connect(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const schemaDefinition = { name: String, number: String };
-const contactSchema = new mongoose.Schema(schemaDefinition);
-
-const Contact = mongoose.model("Contact", contactSchema);
-
-Contact.find({}).then((contacts) => {
-  contacts.forEach((cont) => console.log(cont));
-  mongoose.connection.close();
-});
-
 /*
 let persons = [
   { id: 1, name: "Arto Hellas", number: "040-123456" },

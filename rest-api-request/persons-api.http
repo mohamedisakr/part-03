@@ -2,24 +2,27 @@
 @baseURL = http://localhost:3001
 @contentType = application/json
 
+### homepage
+GET {{baseURL}}
+
 ### persons
 
-GET {{baseURL}}/api/persons/
+GET {{baseURL}}/api/persons
 
 ### persons item get 
-GET {{baseURL}}/api/persons/1
+GET {{baseURL}}/api/persons/5ed798669ebf581084ab4490
 
 ### persons item post 
-POST  {{baseURL}}/api/persons/
+POST  {{baseURL}}/api/persons
 Content-Type: {{contentType}}
 
 {        
-    "name": "John Doe", 
+    "name": "test contact", 
     "number": "739-12-987432"
 }
 
 ### persons item post (test for name uniqueness)
-POST  {{baseURL}}/api/persons/
+POST  {{baseURL}}/api/persons
 Content-Type: {{contentType}}
 
 {        
