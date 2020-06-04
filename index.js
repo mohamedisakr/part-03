@@ -125,6 +125,7 @@ const unknownEndpoint = (req, res) => {
 
 app.use(unknownEndpoint);
 
+// Move the error handling of the application to a new error handler middleware
 const errorHandler = (error, request, response, next) => {
   console.error(error.message);
 
