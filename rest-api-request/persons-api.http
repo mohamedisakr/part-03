@@ -17,8 +17,8 @@ POST  {{baseURL}}/api/persons
 Content-Type: {{contentType}}
 
 {        
-    "name": "test contact", 
-    "number": "739-12-987432"
+    "name": "test 1 contact", 
+    "number": "739-12-234432"
 }
 
 ### persons item post (test for name uniqueness)
@@ -31,12 +31,22 @@ Content-Type: {{contentType}}
 }
 
 ### persons item delete
-DELETE  {{baseURL}}/api/persons/10
+DELETE  {{baseURL}}/api/persons/5ed798669ebf581084ab4492
+
+### persons item update
+PUT {{baseURL}}/api/persons/5ed798669ebf581084ab4492
+Content-Type: {{contentType}}
+
+{
+    "name": "John M. Doe",
+    "number": "40-12-5555122"    
+}
 
 ### info 
 GET {{baseURL}}/info
 
 ### unknown endpoint
 GET {{baseURL}}/foo/bar
+
 
 

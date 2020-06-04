@@ -7,9 +7,12 @@ mongoose
   .connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then((result) => console.log("Connected to MongoDB"))
-  .catch((error) => console.log(`Error connecting to MongoDB: ${error}`));
+  .catch((error) =>
+    console.log(`Error connecting to MongoDB: ${error.message}`)
+  );
 
 const schemaDefinition = { name: String, number: String };
 
