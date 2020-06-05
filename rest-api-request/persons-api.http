@@ -17,8 +17,8 @@ POST  {{baseURL}}/api/persons
 Content-Type: {{contentType}}
 
 {        
-    "name": "test 1 contact", 
-    "number": "739-12-234432"
+    "name": "empty number", 
+    "number": "234432-12-739"
 }
 
 ### persons item post (test for name uniqueness)

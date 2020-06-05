@@ -59,28 +59,28 @@ app.get("/api/persons/:id", (req, res, next) => {
 app.post("/api/persons", (req, res, next) => {
   const body = req.body;
 
-  if (body.name === undefined) {
-    return res.status(400).json({ error: "name missing" });
-  }
+  // if (body.name === undefined) {
+  //   return res.status(400).json({ error: "name missing" });
+  // }
 
-  if (body.number === undefined) {
-    return res.status(400).json({ error: "number missing" });
-  }
+  // if (body.number === undefined) {
+  //   return res.status(400).json({ error: "number missing" });
+  // }
 
-  console.log(body.name);
+  // console.log(body.name);
 
-  if (
-    Contact.find(({ name }) => name.toLowerCase() === body.name.toLowerCase())
-  ) {
-    const newPerson = new Contact({
-      name: body.name,
-      number: body.number,
-    });
-    Contact.findOneAndUpdate({ name: body.name }, newPerson, { new: true })
-      .then((updatedPerson) => res.json(updatedPerson))
-      .catch((error) => next(error));
-    // return res.status(400).json({ error: "name must be unique" });
-  }
+  // if (
+  //   Contact.find(({ name }) => name.toLowerCase() === body.name.toLowerCase())
+  // ) {
+  //   const newPerson = new Contact({
+  //     name: body.name,
+  //     number: body.number,
+  //   });
+  //   Contact.findOneAndUpdate({ name: body.name }, newPerson, { new: true })
+  //     .then((updatedPerson) => res.json(updatedPerson))
+  //     .catch((error) => next(error));
+  //   // return res.status(400).json({ error: "name must be unique" });
+  // }
 
   const newPerson = new Contact({
     name: body.name,
@@ -89,7 +89,8 @@ app.post("/api/persons", (req, res, next) => {
 
   newPerson
     .save()
-    .then((savedPerson) => res.json(savedPerson))
+    .then((savedPerson) => res.json(savedPerson.toJSON()))
+    .then((savedAndFormattedPerson) => res.json(savedAndFormattedPerson))
     .catch((error) => next(error));
 });
 
@@ -112,7 +113,6 @@ app.put("/api/persons/:id", (req, res, next) => {
 });
 
 app.get("/info", (req, res, next) => {
-  // const currentDate = Date.now();
   Contact.countDocuments({}, (err, result) => {
     if (err) {
       next(err);
@@ -120,7 +120,6 @@ app.get("/info", (req, res, next) => {
       res.json(`Phonebook has info for ${result} people.`);
     }
   });
-  //
 });
 
 // catch requests made to non-existent routes
