@@ -27,7 +27,7 @@ Content-Type: {{contentType}}
 
 {        
     "name": "Dan Abramov", 
-    "number": "12-43-234345" 
+    "number": "00-00-000000" 
 }
 
 ### persons item delete

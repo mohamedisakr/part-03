@@ -67,11 +67,20 @@ app.post("/api/persons", (req, res, next) => {
     return res.status(400).json({ error: "number missing" });
   }
 
-  // if (
-  //   Contact.find(({ name }) => name.toLowerCase() === body.name.toLowerCase())
-  // ) {
-  //   return res.status(400).json({ error: "name must be unique" });
-  // }
+  console.log(body.name);
+
+  if (
+    Contact.find(({ name }) => name.toLowerCase() === body.name.toLowerCase())
+  ) {
+    const newPerson = new Contact({
+      name: body.name,
+      number: body.number,
+    });
+    Contact.findOneAndUpdate({ name: body.name }, newPerson, { new: true })
+      .then((updatedPerson) => res.json(updatedPerson))
+      .catch((error) => next(error));
+    // return res.status(400).json({ error: "name must be unique" });
+  }
 
   const newPerson = new Contact({
     name: body.name,
@@ -102,21 +111,17 @@ app.put("/api/persons/:id", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-/*
-app.get("/info", (req, res) => {
-  const currentDate = Date.now();
-  res.send(`<p>Phonebook has info for ${persons.length} people</p>`);
-  // res.send(`<p>${new Date().toLocaleDateString()}</p>`);
-
-  // res.send(currentDate);
-  // res.send(res.getHeaders());
-  // res.send(req.headers.date);
-
-  // res.send(`<div>${new Date()}</div>`);
-  // res.json(`<div>${new Date()}</div>`);
-  // res.send(Date.now());
+app.get("/info", (req, res, next) => {
+  // const currentDate = Date.now();
+  Contact.countDocuments({}, (err, result) => {
+    if (err) {
+      next(err);
+    } else {
+      res.json(`Phonebook has info for ${result} people.`);
+    }
+  });
+  //
 });
-*/
 
 // catch requests made to non-existent routes
 const unknownEndpoint = (req, res) => {
@@ -131,6 +136,8 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "ValidationError") {
+    return response.status(400).json({ error: error.message });
   }
 
   next(error);
