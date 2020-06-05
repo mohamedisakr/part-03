@@ -17,8 +17,8 @@ mongoose
   );
 
 const schemaDefinition = {
-  name: { type: String, required: true, unique: true },
-  number: { type: String, required: true, unique: true },
+  name: { type: String, required: true, unique: true, minlength: 3 },
+  number: { type: String, required: true, unique: true, minlength: 8 },
 };
 
 const contactSchema = new mongoose.Schema(schemaDefinition);
